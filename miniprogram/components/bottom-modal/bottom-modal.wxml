@@ -1,0 +1,7 @@
+<!--components/bottom-modal/bottom-modal.wxml-->
+<!-- 底部弹出框 -->
+<view class="modal">
+  <view class="panel">
+    <i class="iconfont icon-shanchu"></i>
+  </view>
+</view>
