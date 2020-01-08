@@ -6,7 +6,7 @@
     <i class="iconfont icon-fabu"></i>
     </view>
     <view class="search-container">
-      <x-search iconfont="iconfont"/>
+      <x-search iconfont="iconfont" icon-search="icon-search" />
     </view>
   </view>
 </view>
