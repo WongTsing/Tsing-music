@@ -1,2 +1,12 @@
 <!--pages/blog/blog.wxml-->
-<text>待完善，别着急</text>
+<view class="container">
+<!-- 头部 -->
+  <view class="header">
+    <view class="publish-container" bind:tap="onPublish">
+    <i class="iconfont icon-fabu"></i>
+    </view>
+    <view class="search-container">
+      <x-search iconfont="iconfont"/>
+    </view>
+  </view>
+</view>
