@@ -6,6 +6,7 @@ Page({
    */
   data: {
     modalShow:false,
+    blogList: []
   },
   onPublish() {
     wx.getSetting({
@@ -45,7 +46,23 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this._loadBlogList()
+  },
 
+  //加载博客列表
+  _loadBlogList() {
+    wx.cloud.callFunction({
+      name:'blog',
+      data:{
+        $url: 'list',//指定路由名称list(在云函数blog index的router)
+        start:0,
+        count:10,
+      }
+    }).then((res) => {
+      this.setData({
+        blogList: this.data.blogList.concat(res.result) //在原来的列表上使用concat()方法追加数据
+      })
+    })
   },
 
   /**
