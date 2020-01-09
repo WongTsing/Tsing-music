@@ -9,5 +9,10 @@
       <x-search iconfont="iconfont" icon-search="icon-search" />
     </view>
   </view>
-  <x-bottom-modal/>
+  <x-login modalShow="{{modalShow}}" 
+           bind:loginsuccess="onLoginsuccess"
+           bind:loginfail="onLoginfail"
+           >
+    
+  </x-login>
 </view>
