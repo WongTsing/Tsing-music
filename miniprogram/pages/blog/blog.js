@@ -1,4 +1,5 @@
 // pages/blog/blog.js
+let keyword = ''
 Page({
 
   /**
@@ -48,20 +49,41 @@ Page({
   onLoad: function (options) {
     this._loadBlogList()
   },
+  onSearch(event) {
+    console.log(event.detail.keyWord)
+    this.setData({
+      blogList:[]
+    })
+    keyword = event.detail.keyWord
+    this._loadBlogList(0)
+  },
 
   //加载博客列表
-  _loadBlogList() {
+  _loadBlogList(start = 0) {
+    wx.showLoading({
+      title: '加载中...',
+    })
     wx.cloud.callFunction({
       name:'blog',
       data:{
         $url: 'list',//指定路由名称list(在云函数blog index的router)
-        start:0,
+        start,
         count:10,
+        keyword,
       }
     }).then((res) => {
       this.setData({
         blogList: this.data.blogList.concat(res.result) //在原来的列表上使用concat()方法追加数据
       })
+      wx.hideLoading();
+      wx.stopPullDownRefresh()
+    })
+  },
+
+  // 查看详情
+  goComment(event) {
+    wx.navigateTo({
+      url: '../../pages/blog-comment/blog-comment?blogid=' +event.target.dataset.blogid,
     })
   },
 
@@ -97,14 +119,17 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.setData({
+      blogList: [],
+    })
+    this._loadBlogList(0)
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this._loadBlogList(this.data.blogList.length)
   },
 
   /**

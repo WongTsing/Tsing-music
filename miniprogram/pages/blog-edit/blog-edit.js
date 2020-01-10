@@ -152,10 +152,11 @@ Page({
         wx.showToast({
           title: '发布成功',
         })
-        //返回博客首页
-        wx.navigateBack({
-          
-        })
+        //返回博客首页,并刷新
+        wx.navigateBack()
+        const pages = getCurrentPages()
+        const prevPages = pages[pages.length-2]
+        prevPages.onPullDownRefresh()
       }).catch((err) => {
         wx.hideLoading()
         wx.showToast({
