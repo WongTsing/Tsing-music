@@ -7,7 +7,8 @@ Component({
    */
   externalClasses: ['iconfont', 'icon-pinglun','icon-fenxiang'],
   properties: {
-    blogId: String
+    blogId: String,
+    blog: Object,
   },
 
   /**
