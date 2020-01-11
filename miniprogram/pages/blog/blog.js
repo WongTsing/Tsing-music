@@ -82,8 +82,9 @@ Page({
 
   // 查看详情
   goComment(event) {
+    console.log(event)
     wx.navigateTo({
-      url: '../../pages/blog-comment/blog-comment?blogid=' +event.target.dataset.blogid,
+      url: '../../pages/blog-comment/blog-comment?blogId=' + event.target.dataset.blogid,
     })
   },
 

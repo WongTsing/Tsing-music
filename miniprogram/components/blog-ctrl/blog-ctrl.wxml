@@ -15,10 +15,10 @@
          bind:loginfail="onLoginfail"/>
 
 <x-bottom-modal modalShow="{{modalShow}}">
-  <form report-submit="true" slot="modal-content" bind:submit="onSend">
-    <!-- <textarea name="content" bindinput="onInput" class="comment-content" placeholder="写评论内容"></textarea> -->
-    <textarea name="content" class="comment-content" placeholder="写评论内容"></textarea>
-    <!-- <button class="send" form-type="submit" bind:tap="onSend">发送</button> -->
-    <button class="send" form-type="submit">发送</button>
-  </form>
+  <view  slot="modal-content">
+    <textarea name="content" bindinput="onInput" class="comment-content" placeholder="写评论内容"></textarea>
+    <!-- <textarea name="content" class="comment-content" placeholder="写评论内容"></textarea> -->
+    <button class="send"  bind:tap="onSend">发送</button>
+    <!-- <button class="send" form-type="submit">发送</button> -->
+  </view>
 </x-bottom-modal>

@@ -62,17 +62,17 @@ Component({
         content: '',
       })
     },
-    // onInput(event) {
-    //   this.setData({
-    //     content: event.detail.value
-    //   })
-    // },
+    onInput(event) {
+      this.setData({
+        content: event.detail.value
+      })
+    },
 
     onSend(event) {
       console.log(event)
       // 1.插入数据库
       let content = this.data.content
-      if(content.trim() =='') {
+      if (content.trim() =='') { 
         wx.showModal({
           title: '评论内容不能为空',
           content: '',
@@ -103,6 +103,8 @@ Component({
           modalShow: false,
           content:''
         })
+        //刷新评论页面
+        this.triggerEvent('refreshCommentList')
       })
 
       // 2、推送模板信息
