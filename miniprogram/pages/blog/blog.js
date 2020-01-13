@@ -48,6 +48,7 @@ Page({
    */
   onLoad: function (options) {
     this._loadBlogList()
+    // console.log(options.scene)
   },
   onSearch(event) {
     console.log(event.detail.keyWord)

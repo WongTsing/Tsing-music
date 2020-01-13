@@ -28,6 +28,7 @@ Page({
     this._getSwiper()
     this._getPlaylist()
     
+    
   
     // wx.request({
     //   url: 'http://musicapi.xiecheng.live/top/playlist?limit=6&order=new',
