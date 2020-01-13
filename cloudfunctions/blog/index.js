@@ -4,7 +4,7 @@ const cloud = require('wx-server-sdk')
 cloud.init()
 
 const TcbRouter = require('tcb-router')
-const db = cloud.database()
+const db = cloud.database() //云函数端初始化数据库
 
 const blogCollection = db.collection('blog')//博客集合
 
@@ -72,6 +72,17 @@ exports.main = async (event, context) => {
       detail,
     }
 
+  })
+  //1 设置路由，查询云数据库(方式一：通过云函数端方式查询云数据库)
+  const wxContext = cloud.getWXContext()
+  app.router('getListByOpenid',async(ctx,next) => {
+    ctx.body = await blogCollection.where({
+        _openid: wxContext.OPENID
+      }).skip(event.start)//ship()分页查询
+      .limit(event.count)
+      .orderBy('createTime', 'desc').get().then((res) =>{
+        return res.data
+      })
   })
   
 
